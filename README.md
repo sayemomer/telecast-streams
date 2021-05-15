@@ -12,7 +12,7 @@ The values of these two entries can be like this
 
 Now the system sends 2 messages to a particular SNS when
 
-start_time === now
-end_time === now
+* start_time === now
+* end_time === now
 
 That is whenever the particular time of the day is equal to any of the entries start_time or end_time then it will send 2 messages to a particular SNS.
