@@ -1,5 +1,4 @@
 # Live telecast streams
-Scheduling a live game telecast stream ( AWS Dynamodb Streams , Lambda , SNS )
 
 **Live Telecast Streams** is an notification service which creates dynamoDB table for every program , there is at least two values
 
