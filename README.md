@@ -16,3 +16,33 @@ Now the system sends 2 messages to a particular SNS when
 * end_time === now
 
 That is whenever the particular time of the day is equal to any of the entries start_time or end_time then it will send 2 messages to a particular SNS.
+
+## Table of Contents
+
+* [Architecture diagram](#architecture-diagram)
+* [How it works](#how-it-works)
+* [Prerequisites](#prerequisites)
+* [Running project](#running-project)
+* [Testing](#testing)
+* [API service](#api-service)
+* [References](#references)
+* [License](#license)
+* [Contact](#contact)
+
+## Architecture diagram
+
+## How it works
+
+## Prerequisites
+
+## Running project
+
+## Testing
+
+## API service
+
+## References
+
+## License
+
+## Contact
