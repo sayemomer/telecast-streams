@@ -45,7 +45,7 @@ That is whenever the particular time of the day is equal to any of the entries s
 
 #### Infrastructure as code
 
-##### DocumentationAlthough this section can be seen as unnecessary to the actual solution of the problem,  I decided to leverage the IasC solutions, which codifies the entire architecture and can save a ton of deployment time.
+ Although this section can be seen as unnecessary to the actual solution of the problem,  I decided to leverage the IasC solutions, which codifies the entire architecture and can save a ton of deployment time.
 
 
 ## Prerequisites
