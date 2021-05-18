@@ -41,11 +41,16 @@ That is whenever the particular time of the day is equal to any of the entries s
 
 #### Data streaming
 
-#### Notification service
+Although this section can be seen as unnecessary to the actual solution of the problem,  I decided to leverage the IasC solutions, which codifies the entire architecture and can save a ton of deployment time. There are several tools for managing serverless application, such as AWS SAM, serverless framework, and terraform. However, for the sake of minimality, I will decide between SAM and serverless framework.
 
-#### Infrastructure as code
+ On the one hand, the serverless framework is a provider-agnostic solution. Thus, its possible to deploy FaaS functions into multiple serverless vendors. Interestingly, the Deployment process is magical (Creates s3 buckets to store artefacts automatically) in SF, and indeed, it's easy. Offline testing needs to install an extra package(serverless offline) and does not need a docker.
 
- Although this section can be seen as unnecessary to the actual solution of the problem,  I decided to leverage the IasC solutions, which codifies the entire architecture and can save a ton of deployment time.
+ On the other hand, as SAM is an abstract layer of AWS cloudformation, it is easy for running AWS user. Moreover, it consists of fewer boilerplate.SAM Local creates the same environment as Lambda, which spins up local API gateway and then runs function in docker. Finally, it has deep integration of AWS tools for debugging , testing and development such as  AWS Serverless Application Repository, AWS Toolkit for Visual Studio Code, AWS Cloud9 IDE, Jenkins plugin.
+
+ Considering the above options with my solution, I decided to stick with SAM:
+1. Owing to this solution is utterly based on AWS, it will be overkill to use a multi-cloud solution tool.
+2. Development and testing with the more AWS like tools with SAM may ease the process.
+3. Local development will be more likely to AWS Lambda.  
 
 
 ## Prerequisites
