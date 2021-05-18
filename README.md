@@ -31,7 +31,7 @@ That is whenever the particular time of the day is equal to any of the entries s
 
 ## Architecture diagram
 
-![MVP Architecture](./iter2.png)
+![MVP Architecture](./iter3.png)
 
 ## How it works
 
