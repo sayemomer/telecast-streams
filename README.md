@@ -41,6 +41,10 @@ That is whenever the particular time of the day is equal to any of the entries s
 
 #### Data streaming
 
+#### Notification service
+
+#### Infrastructure as Code
+
 Although this section can be seen as unnecessary to the actual solution of the problem,  I decided to leverage the IasC solutions, which codifies the entire architecture and can save a ton of deployment time. There are several tools for managing serverless application, such as AWS SAM, serverless framework, and terraform. However, for the sake of minimality, I will decide between SAM and serverless framework.
 
  On the one hand, the serverless framework is a provider-agnostic solution. Thus, its possible to deploy FaaS functions into multiple serverless vendors. Interestingly, the Deployment process is magical (Creates s3 buckets to store artefacts automatically) in SF, and indeed, it's easy. Offline testing needs to install an extra package(serverless offline) and does not need a docker.
