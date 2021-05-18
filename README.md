@@ -35,6 +35,16 @@ That is whenever the particular time of the day is equal to any of the entries s
 
 ## How it works
 
+#### Rest API
+
+#### Data storing
+
+#### Data streaming
+
+#### Notification service
+
+
+
 ## Prerequisites
 
 ## Running project
