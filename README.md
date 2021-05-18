@@ -31,7 +31,7 @@ That is whenever the particular time of the day is equal to any of the entries s
 
 ## Architecture diagram
 
-![MVP Architecture](./iteration.png)
+![MVP Architecture](./images/iteration.png)
 
 ## How it works
 
@@ -44,6 +44,8 @@ That is whenever the particular time of the day is equal to any of the entries s
 #### Notification service
 
 #### Infrastructure as code
+
+    Although this section can be seen as unnecessary to the actual solution of the problem,  I decided to leverage the IasC solutions, which codifies the entire architecture and can save a ton of deployment time.
 
 
 ## Prerequisites
