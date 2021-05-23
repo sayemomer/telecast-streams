@@ -66,6 +66,10 @@ Although this section can be seen as unnecessary to the actual solution of the p
 ## API service
 
 ## References
+Inspired by following codes, articles and videos:
+* [Infrastructure as Code: What Is It? Why Is It Important?](https://www.hashicorp.com/resources/what-is-infrastructure-as-code)
+* [Comparing AWS SAM with the Serverless framework](https://sanderknape.com/2018/02/comparing-aws-sam-with-serverless-framework/)
+* [Serverless comparisons](https://www.serverless.com/learn/comparisons/)
 
 ## License
 
