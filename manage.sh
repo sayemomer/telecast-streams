@@ -26,7 +26,7 @@ if [ $argument = "newb" ]; then
 elif [ $argument = "test" ]; then
     echo "creating local infrastructure..."
     cd ./app
-    sam local invoke
+    sam local start-api
 
 elif [ $argument = "up" ]; then
     echo "Creating infrastructure..."
