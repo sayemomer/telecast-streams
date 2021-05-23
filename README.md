@@ -66,6 +66,18 @@ Software required to run the project. Install:
 
 ## Running project
 
+Script `manage.sh` works as a managing tool.
+
+- install project prerequisites
+```sh
+./manage.sh newb
+```
+
+- start testing locally
+```sh
+./manage.sh test
+```
+
 ## Testing
 
 ## API service
