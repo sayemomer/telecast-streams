@@ -58,6 +58,11 @@ Although this section can be seen as unnecessary to the actual solution of the p
 
 
 ## Prerequisites
+Software required to run the project. Install:
+- [AWS CLI](https://docs.aws.amazon.com/cli/index.html)
+- [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html)
+- [Python 3.8+ (pip)](https://www.python.org/)
+- [Docker](https://docs.docker.com/get-docker/)
 
 ## Running project
 
