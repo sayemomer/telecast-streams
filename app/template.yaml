@@ -1,11 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  app
+  telecast-streams
 
-  Sample SAM Template for app
+  SAM Template for telecast-streams
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+
 Globals:
   Function:
     Timeout: 3
@@ -21,7 +21,7 @@ Parameters:
 
 Resources:
   HelloWorldFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function 
     Properties:
       CodeUri: hello_world/
       Handler: app.lambda_handler
@@ -32,10 +32,30 @@ Resources:
           REGION_NAME: !Ref Region
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /hello
             Method: get
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActivitiesTable
+
+  CreateActivityFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello_world/
+      Handler: app.create
+      Runtime: python3.8
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          REGION_NAME: !Ref Region
+      Events:
+        CreateActivities:
+          Type: Api
+          Properties:
+            Path: /activities
+            Method: post
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ActivitiesTable
@@ -48,12 +68,18 @@ Resources:
           AttributeName: "id"
           AttributeType: "S"
         -
+          AttributeName: "start_time"
+          AttributeType: "S"
+        -
           AttributeName: "end_time"
           AttributeType: "S"
       KeySchema:
         -
           AttributeName: "id"
           KeyType: "HASH"
+        -
+          AttributeName: "start_time"
+          AttributeType: "Range"
         -
           AttributeName: "end_time"
           KeyType: "RANGE"
@@ -62,9 +88,6 @@ Resources:
         WriteCapacityUnits: "1"
       TableName: "Activities"
 Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
