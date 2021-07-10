@@ -10,6 +10,15 @@ Globals:
   Function:
     Timeout: 3
 
+Parameters:
+  Table:
+    Type: String
+    Default: Activities
+  Region:
+    Type: String
+    Default: ap-southeast-1
+
+
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -17,13 +26,41 @@ Resources:
       CodeUri: hello_world/
       Handler: app.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          REGION_NAME: !Ref Region
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /hello
             Method: get
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActivitiesTable
 
+  ActivitiesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "id"
+          AttributeType: "S"
+        -
+          AttributeName: "end_time"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "id"
+          KeyType: "HASH"
+        -
+          AttributeName: "end_time"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "1"
+        WriteCapacityUnits: "1"
+      TableName: "Activities"
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
@@ -37,3 +74,9 @@ Outputs:
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
+  ActivitiesTable:
+    Description: "DynamoDB Table"
+    Value: !Ref ActivitiesTable
+  ActivitiesTableArn:
+    Description: "DynamoDB Table ARN"
+    Value: !GetAtt ActivitiesTable.Arn
