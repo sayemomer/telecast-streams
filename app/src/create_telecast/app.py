@@ -9,7 +9,7 @@ table_name = os.environ['TABLE_NAME']
 region = os.environ['REGION_NAME']
 
 
-def create(message, context):
+def lambda_handler(message, context):
 
     activity = json.loads(message['body'])
 
@@ -33,19 +33,3 @@ def create(message, context):
         'headers': {},
         'body': json.dumps({'message': 'Activity created'})
     }
-
-
-def lambda_handler(event, context):
-
-    scan_result = dynamo.scan(TableName=table_name)
-    print(scan_result)
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            "query_result": scan_result
-        }),
-    }
-
-

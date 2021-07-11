@@ -20,10 +20,10 @@ Parameters:
 
 
 Resources:
-  HelloWorldFunction:
+  GetTelecastFunction:
     Type: AWS::Serverless::Function 
     Properties:
-      CodeUri: hello_world/
+      CodeUri: src/get_telecast
       Handler: app.lambda_handler
       Runtime: python3.8
       Environment:
@@ -31,36 +31,36 @@ Resources:
           TABLE_NAME: !Ref Table
           REGION_NAME: !Ref Region
       Events:
-        HelloWorld:
+        GetTelecasts:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /telecasts
             Method: get
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref ActivitiesTable
+            TableName: !Ref TelecastTable
 
-  CreateActivityFunction:
+  CreateTelecastFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: hello_world/
-      Handler: app.create
+      CodeUri: src/create_telecast
+      Handler: app.lambda_handler
       Runtime: python3.8
       Environment:
         Variables:
           TABLE_NAME: !Ref Table
           REGION_NAME: !Ref Region
       Events:
-        CreateActivities:
+        CreateTelecast:
           Type: Api
           Properties:
-            Path: /activities
+            Path: /create_telecast
             Method: post
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref ActivitiesTable
+            TableName: !Ref TelecastTable
 
-  ActivitiesTable:
+  TelecastTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -86,20 +86,4 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: "1"
         WriteCapacityUnits: "1"
-      TableName: "Activities"
-Outputs:
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
-  ActivitiesTable:
-    Description: "DynamoDB Table"
-    Value: !Ref ActivitiesTable
-  ActivitiesTableArn:
-    Description: "DynamoDB Table ARN"
-    Value: !GetAtt ActivitiesTable.Arn
+      TableName: "telecast"
